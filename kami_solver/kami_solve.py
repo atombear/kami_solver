@@ -1,4 +1,4 @@
-from __future__ import division
+
 import networkx as nx
 import matplotlib.pyplot as plt
 import copy
@@ -276,7 +276,7 @@ def solve_graph(graph,move_list,move_limit):
             new_move_list = copy.deepcopy(move_list)
             new_move_list.append((node,color))
             if len(move_list)<move_limit:
-                print len(new_graph)
+                print(len(new_graph))
                 soln = solve_graph(new_graph,new_move_list,move_limit)
                 if soln:
                     return soln
@@ -328,6 +328,6 @@ def translate_moves(moves,colors):
         tile_num = int(move[0][1::])
         i = tile_num%10
         j = int((tile_num-i)/10)
-        print 'Make (' + str(i) + ',' + str(j) + ') ' + colors[move[1]]
+        print('Make (' + str(i) + ',' + str(j) + ') ' + colors[move[1]])
         #plt.figure()
         #plt.imshow(pic + 10*((X-i)**2 + (Y-j)**2<1),interpolation='none')

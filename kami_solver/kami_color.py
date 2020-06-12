@@ -1,9 +1,7 @@
-from __future__ import division
-# import the necessary packages
 import cv2
 import scipy
 import matplotlib.pyplot as plt
-import KamiSolve
+from kami_solver import kami_solve
 import operator
 from scipy.constants import pi
         
@@ -43,10 +41,10 @@ for i in range(10):
         xc = 108*i+54
         yc = 108*j+54
         color = (kami[yc-20:yc+20,xc-20:xc+20].sum(0).sum(0)/1600)
-        color_hsl = scipy.array([KamiSolve.rgb2hsl(color[::-1],255)[l] for l in [0,2]])
-        #color_hsl = scipy.array(KamiSolve.rgb2hsl(color[::-1],255))
+        color_hsl = scipy.array([kami_solve.rgb2hsl(color[::-1],255)[l] for l in [0,2]])
+        #color_hsl = scipy.array(kami_solve.rgb2hsl(color[::-1],255))
         
-        color_Lab = KamiSolve.rgb2CIELAB(color[::-1])
+        color_Lab = kami_solve.rgb2CIELAB(color[::-1])
 
         #gw = color.dot(BGR_weights)
         #color = color/gw
@@ -64,11 +62,11 @@ for i in range(10):
 kami = scipy.fliplr(kami.reshape(-1,3)).reshape(kami.shape)
 plt.imshow(kami)
 plt.figure()
-KamiSolve.show_color_board(color_board)
+kami_solve.show_color_board(color_board)
 
-m = KamiSolve.k_means(color_board,k)
+m = kami_solve.k_means(color_board,k)
 plt.figure()
-KamiSolve.show_color_board(color_board)
+kami_solve.show_color_board(color_board)
 
 plt.show()
 
@@ -77,10 +75,10 @@ for i in color_board:
     c[color_board[i][1]].append(i)
 while [] in c:
     c.remove([])
-graph = KamiSolve.determine_graph(c)
+graph = kami_solve.determine_graph(c)
 
-moves = KamiSolve.solve_graph(graph,[],4)
-KamiSolve.translate_moves(moves,colors)
+moves = kami_solve.solve_graph(graph,[],4)
+kami_solve.translate_moves(moves,colors)
 
 
 

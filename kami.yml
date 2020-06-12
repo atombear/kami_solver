@@ -1,0 +1,12 @@
+name: kami-env
+channels:
+  - conda-forge
+dependencies:
+  - python = 3.8
+  - opencv
+  - scipy
+  - jupyter
+  - matplotlib
+  - numpy
+  - ipython
+  - networkx
